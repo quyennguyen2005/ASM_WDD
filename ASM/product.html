@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Quay lại trang sản phẩm</a>
+        <div id="productDetail"></div>
+    </div>
+    <script>
+        // Cùng mảng sản phẩm như index.html
+        const products = [
+            { id: 1, title: 'Máy Ảnh Sony A7 IV', price: 38000000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+A7+IV', stock: true, category: 'camera' },
+            { id: 2, title: 'Máy Ảnh Canon EOS R6', price: 42000000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+EOS+R6', stock: true, category: 'camera' },
+            { id: 3, title: 'Ống Kính Sony FE 24-70mm', price: 25000000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+24-70mm', stock: true, category: 'lens' },
+            { id: 4, title: 'Ống Kính Canon RF 50mm', price: 9000000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+RF+50mm', stock: true, category: 'lens' },
+            { id: 5, title: 'Máy ảnh Sony ZV-E10', price: 13500000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+ZV-E10', stock: true, category: 'camera' },
+            { id: 6, title: 'Máy ảnh Sony A7III', price: 30000000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+A7III', stock: true, category: 'camera' },
+            { id: 7, title: 'Máy ảnh Canon EOS 5D', price: 4500000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+EOS+5D', stock: true, category: 'camera' },
+            { id: 8, title: 'Máy ảnh Canon EOS 6D', price: 7000000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+EOS+6D', stock: true, category: 'camera' },
+            { id: 9, title: 'Ống kính Canon EF 24-105mm F4L', price: 5500000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+24-105mm+F4L', stock: true, category: 'lens' },
+            { id: 10, title: 'Ống kính Sony FE 70-200mm GM F2.8 OSS', price: 35000000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+70-200mm+GM', stock: true, category: 'lens' },
+            { id: 11, title: 'Ống kính Sigma 24-70mm F2.8 OS', price: 25000000, brand: 'Sigma', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Sigma_Corporation_logo.svg', img: 'https://via.placeholder.com/180x150?text=Sigma+24-70mm+OS', stock: true, category: 'lens' },
+            { id: 12, title: 'Ống kính Sony FE 50mm F1.4 GM', price: 27000000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+50mm+F1.4+GM', stock: true, category: 'lens' },
+            // Nikon
+            { id: 13, title: 'Máy ảnh Nikon Z6 II', price: 34000000, brand: 'Nikon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Nikon_Logo.svg', img: 'https://via.placeholder.com/180x150?text=Nikon+Z6+II', stock: true, category: 'camera' },
+            { id: 14, title: 'Ống kính Nikon Z 24-70mm f/4 S', price: 18000000, brand: 'Nikon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Nikon_Logo.svg', img: 'https://via.placeholder.com/180x150?text=Nikon+24-70mm+f4+S', stock: true, category: 'lens' },
+            // Fujifilm
+            { id: 15, title: 'Máy ảnh Fujifilm X-T4', price: 28000000, brand: 'Fujifilm', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Fujifilm_logo.svg', img: 'https://via.placeholder.com/180x150?text=Fujifilm+X-T4', stock: true, category: 'camera' },
+            { id: 16, title: 'Ống kính Fujinon XF 16-55mm f/2.8', price: 21000000, brand: 'Fujifilm', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Fujifilm_logo.svg', img: 'https://via.placeholder.com/180x150?text=Fujinon+16-55mm+f2.8', stock: true, category: 'lens' },
+            // Tamron
+            { id: 17, title: 'Ống kính Tamron 28-75mm F2.8 Di III RXD', price: 15000000, brand: 'Tamron', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Tamron_logo.svg', img: 'https://via.placeholder.com/180x150?text=Tamron+28-75mm+F2.8', stock: true, category: 'lens' },
+            { id: 18, title: 'Ống kính Tamron 70-180mm F2.8 Di III VXD', price: 25000000, brand: 'Tamron', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Tamron_logo.svg', img: 'https://via.placeholder.com/180x150?text=Tamron+70-180mm+F2.8', stock: true, category: 'lens' },
+            // Leica
+            { id: 19, title: 'Máy ảnh Leica Q2', price: 120000000, brand: 'Leica', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Leica_logo.svg', img: 'https://via.placeholder.com/180x150?text=Leica+Q2', stock: true, category: 'camera' },
+            { id: 20, title: 'Ống kính Leica Summilux-M 50mm f/1.4 ASPH', price: 95000000, brand: 'Leica', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Leica_logo.svg', img: 'https://via.placeholder.com/180x150?text=Leica+50mm+f1.4', stock: true, category: 'lens' },
+            // Phụ kiện - Đèn Flash
+            { id: 21, title: 'Đèn Flash Canon Speedlite 600EX II-RT', price: 8500000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+Speedlite+600EX', stock: true, category: 'accessory' },
+            { id: 22, title: 'Đèn Flash Sony HVL-F60RM2', price: 9500000, brand: 'Sony', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sony+HVL-F60RM2', stock: true, category: 'accessory' },
+            { id: 23, title: 'Đèn Flash Nikon SB-5000', price: 7800000, brand: 'Nikon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Nikon_Logo.svg', img: 'https://via.placeholder.com/180x150?text=Nikon+SB-5000', stock: true, category: 'accessory' },
+            // Phụ kiện - Đèn LED
+            { id: 24, title: 'Đèn LED Aputure MC RGBWW', price: 3200000, brand: 'Aputure', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Aputure+MC+RGBWW', stock: true, category: 'accessory' },
+            { id: 25, title: 'Đèn LED Godox SL-60W', price: 2800000, brand: 'Godox', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Godox+SL-60W', stock: true, category: 'accessory' },
+            { id: 26, title: 'Đèn LED Yongnuo YN360', price: 1800000, brand: 'Yongnuo', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Yongnuo+YN360', stock: true, category: 'accessory' },
+            // Phụ kiện - Chân máy
+            { id: 27, title: 'Chân máy Manfrotto MT055XPRO3', price: 4500000, brand: 'Manfrotto', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Manfrotto+MT055XPRO3', stock: true, category: 'accessory' },
+            { id: 28, title: 'Chân máy Gitzo GT3543LS', price: 8500000, brand: 'Gitzo', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Gitzo+GT3543LS', stock: true, category: 'accessory' },
+            { id: 29, title: 'Chân máy Benro TMA38CL', price: 3200000, brand: 'Benro', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Benro+TMA38CL', stock: true, category: 'accessory' },
+            // Phụ kiện - Gimbal
+            { id: 30, title: 'Gimbal DJI RS 3 Pro', price: 12000000, brand: 'DJI', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=DJI+RS+3+Pro', stock: true, category: 'accessory' },
+            { id: 31, title: 'Gimbal Zhiyun Crane 3S', price: 9500000, brand: 'Zhiyun', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Zhiyun+Crane+3S', stock: true, category: 'accessory' },
+            { id: 32, title: 'Gimbal Moza Air 2', price: 7800000, brand: 'Moza', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Moza+Air+2', stock: true, category: 'accessory' },
+            // Phụ kiện - Microphone
+            { id: 33, title: 'Microphone Rode VideoMic Pro+', price: 4200000, brand: 'Rode', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Rode+VideoMic+Pro+', stock: true, category: 'accessory' },
+            { id: 34, title: 'Microphone Sennheiser MKE 600', price: 3800000, brand: 'Sennheiser', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Sennheiser+MKE+600', stock: true, category: 'accessory' },
+            // Phụ kiện - Filter
+            { id: 35, title: 'Filter ND Variable 2-8 Stop', price: 1200000, brand: 'Tiffen', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Tiffen+ND+Variable', stock: true, category: 'accessory' },
+            { id: 36, title: 'Filter CPL Circular Polarizer', price: 850000, brand: 'Hoya', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Hoya+CPL+Filter', stock: true, category: 'accessory' },
+            // Máy in
+            { id: 37, title: 'Máy in ảnh Canon SELPHY CP1500', price: 2800000, brand: 'Canon', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Canon_wordmark.svg', img: 'https://via.placeholder.com/180x150?text=Canon+SELPHY+CP1500', stock: true, category: 'printer' },
+            { id: 38, title: 'Máy in ảnh Fujifilm Instax Share SP-3', price: 3500000, brand: 'Fujifilm', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Fujifilm_logo.svg', img: 'https://via.placeholder.com/180x150?text=Fujifilm+Instax+Share+SP-3', stock: true, category: 'printer' },
+            { id: 39, title: 'Máy in ảnh HP Sprocket Studio', price: 4200000, brand: 'HP', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=HP+Sprocket+Studio', stock: true, category: 'printer' },
+            { id: 40, title: 'Máy in ảnh Polaroid Hi-Print', price: 1800000, brand: 'Polaroid', brandLogo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Sony_logo.png', img: 'https://via.placeholder.com/180x150?text=Polaroid+Hi-Print', stock: true, category: 'printer' },
+        ];
+
+        // Lấy id sản phẩm từ URL
+        function getProductId() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        // Render chi tiết sản phẩm
+        function renderProductDetail() {
+            const id = getProductId();
+            const product = products.find(p => p.id === id);
+            const div = document.getElementById('productDetail');
+            if (!product) {
+                div.innerHTML = '<p>Không tìm thấy sản phẩm.</p>';
+                return;
+            }
+            
+            // Tạo status HTML dựa trên stock
+            const statusHtml = product.stock 
+                ? `<div class="product-status status-instock">
+                     <div class="status-icon"></div>
+                     <span>Còn hàng</span>
+                   </div>`
+                : `<div class="product-status status-outstock">
+                     <div class="status-icon"></div>
+                     <span>Hết hàng</span>
+                   </div>`;
+            
+            div.innerHTML = `
+                <div class="product-detail">
+                    <div class="product-img">
+                        <img src="${product.img}" alt="${product.title}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <!-- Đã loại bỏ logo thương hiệu -->
+                            <span>${product.title}</span>
+                        </div>
+                        <div><b>Thương hiệu:</b> ${product.brand}</div>
+                        ${statusHtml}
+                        <div class="product-price">${product.price.toLocaleString()} đ</div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})" ${!product.stock ? 'disabled' : ''}>${product.stock ? 'Thêm vào giỏ hàng' : 'Hết hàng'}</button>
+                        <div class="product-desc"><b>Mô tả:</b> Sản phẩm chất lượng cao, phù hợp cho mọi nhu cầu nhiếp ảnh. (Mô tả mẫu)</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Thêm vào giỏ hàng (dùng localStorage để đồng bộ với index.html)
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            
+            // Kiểm tra tình trạng hàng
+            if (!product.stock) {
+                alert('Sản phẩm hiện tại đã hết hàng!');
+                return;
+            }
+            
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty++;
+            } else {
+                cart.push({ id: product.id, title: product.title, price: product.price, qty: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Đã thêm vào giỏ hàng!');
+        }
+
+        renderProductDetail();
+    </script>
+    <footer class="footer-contact">
+  <div class="footer-container">
+    <div class="footer-col company">
+      <b>CÔNG TY CỔ PHẦN THƯƠNG MẠI DỊCH VỤ CÔNG NGHỆ SỐ HQSTUDIO</b><br>
+      <span style="display:inline-block;margin:0.3em 0;">&#128222; (028) 66.853.262</span><br>
+      <span style="display:inline-block;margin:0.3em 0;">&#128241; 0933.44.0262</span><br>
+      <b>Địa chỉ:</b> 21/ngõ Khoang Mụn, Thôn Thái Bình, Xã Hạ Bằng, Huyện Thạch Thất, TP. Hà Nội<br>
+      <span style="font-size:0.97em;">Làm việc tất cả các ngày trong tuần Thứ 2 đến Thứ 7: 9h đến 19h30 Chủ Nhật và Ngày Lễ: 9h đến 18h</span>
+    </div>
+    <div class="footer-col policy">
+      <b>CHÍNH SÁCH</b>
+      <ul>
+        <li>Hỗ trợ khách hàng</li>
+        <li>Chính sách vận chuyển</li>
+        <li>Chính sách bảo hành</li>
+        <li>Check Shot Sony và Kiểm tra Bảo Hành</li>
+      </ul>
+    </div>
+    <div class="footer-col service">
+      <b>Dịch vụ</b>
+      <ul>
+        <li>Liên hệ</li>
+        <li>Sửa máy ảnh và ống kính</li>
+      </ul>
+      <b style="margin-top:1em;display:block;">Giấy chứng nhận đăng ký kinh doanh</b>
+      <div style="font-size:0.97em;">
+        Mã số doanh nghiệp: 0315321991<br>
+        Cấp bởi: SỞ KẾ HOẠCH VÀ ĐẦU TƯ THÀNH PHỐ HỒ CHÍ MINH<br>
+        Ngày cấp: 10/10/2018
+      </div>
+    </div>
+    <div class="footer-col customer">
+      <b>Chăm sóc khách hàng</b>
+      <ul>
+        <li>Thương hiệu</li>
+        <li>Sơ đồ trang</li>
+      </ul>
+      <b style="margin-top:1em;display:block;">Quản lý tài khoản</b>
+      <ul>
+        <li>Quản lý Tài khoản</li>
+        <li>Lịch sử đơn hàng</li>
+      </ul>
+      <div class="footer-badges">
+        <img src="https://www.dmca.com/img/dmca-badge-w200-5x1-01.png" alt="DMCA" style="height:32px;margin:0.5em 0;">
+        <img src="https://www.giaonhan247.com/wp-content/uploads/2021/07/da-thong-bao-bo-cong-thuong.png" alt="Bộ Công Thương" style="height:32px;margin:0.5em 0;">
+      </div>
+    </div>
+  </div>
+  <div class="footer-social">
+    <a href="#" class="footer-social-btn" title="Gọi điện">&#128222;</a>
+    <a href="#" class="footer-social-btn" title="Messenger"><img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Facebook_Messenger_4_Logo.svg" alt="Messenger" style="height:24px;vertical-align:middle;"></a>
+    <a href="#" class="footer-social-btn" title="Zalo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" style="height:24px;vertical-align:middle;"></a>
+  </div>
+</footer>
+</body>
+</html>
