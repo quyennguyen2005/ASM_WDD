@@ -1,0 +1,208 @@
+.sidebar {
+    transition: all 0.3s ease;
+}
+.sidebar.collapsed {
+    width: 70px;
+}
+.sidebar.collapsed .sidebar-text {
+    display: none;
+}
+.main-content {
+    transition: all 0.3s ease;
+}
+.sidebar.collapsed + .main-content {
+    margin-left: 70px;
+}
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+.message-item:hover {
+    background-color: #f3f4f6;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Profile card styles */
+.profile-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(80, 112, 255, 0.08);
+    padding: 2.5rem 2rem 2rem 2rem;
+    max-width: 420px;
+    margin: 2rem auto;
+    position: relative;
+    transition: box-shadow 0.2s;
+}
+.profile-card:hover {
+    box-shadow: 0 8px 32px rgba(80, 112, 255, 0.16);
+}
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 4px solid #6366f1;
+    object-fit: cover;
+    margin: 0 auto 1rem auto;
+    display: block;
+    background: #f3f4f6;
+}
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3730a3;
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+.profile-role {
+    text-align: center;
+    color: #6366f1;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.profile-form label {
+    color: #374151;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+.profile-form input,
+.profile-form textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+}
+.profile-form input:focus,
+.profile-form textarea:focus {
+    border-color: #6366f1;
+    outline: none;
+    background: #fff;
+}
+.profile-form button {
+    width: 100%;
+    background: #6366f1;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+.profile-form button:hover {
+    background: #4338ca;
+}
+.profile-message {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+}
+.profile-message.success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #34d399;
+}
+.profile-message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #f87171;
+}
+#addCourseModal {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0 0 0 / 50%);
+}
+.add-course-content {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(80, 112, 255, 0.08);
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 2rem;
+    position: relative;
+}
+.add-course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.add-course-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #3730a3;
+}
+.close-modal {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.close-modal:hover {
+    color: #6366f1;
+}
+.add-course-form label {
+    color: #374151;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+.add-course-form input,
+.add-course-form textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+}
+.add-course-form input:focus,
+.add-course-form textarea:focus {
+    border-color: #6366f1;
+    outline: none;
+    background: #fff;
+}
+.add-course-form button {
+    width: 100%;
+    background: #6366f1;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+.add-course-form button:hover {
+    background: #4338ca;
+}
